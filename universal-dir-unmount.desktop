@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=Service
+X-KDE-ServiceTypes=KonqPopupMenu/Plugin
+Icon=media-eject
+MimeType=inode/directory;
+Actions=unmount;
+
+
+[Desktop Action unmount]
+Name=Unmount directory
+Icon=media-eject
+Exec=pkexec umount "%f"
