@@ -3,10 +3,15 @@ Type=Service
 X-KDE-ServiceTypes=KonqPopupMenu/Plugin
 Icon=media-eject
 MimeType=inode/directory;
-Actions=unmount;
+Actions=unmount;unmount-delete;
 
 
 [Desktop Action unmount]
-Name=Unmount directory
+Name=Unmount
 Icon=media-eject
-Exec=pkexec umount "%f"
+Exec=fusermount -u "%f" || pkexec umount "%f" || kdialog --error "Cannot unmount, you can try to do it manually:\n\nsudo umount \\""%f"\\""
+
+[Desktop Action unmount-delete]
+Name=Unmount and delete directory
+Icon=media-eject
+Exec=$($(fusermount -u "%f" || pkexec umount "%f") && $(rm -r "%f" || pkexec rm -r "%f")) || kdialog --error "Cannot unmount or delete, you can try to do it manually:\n\nsudo umount \\""%f"\\" && sudo rm -r \\""%f"\\""
