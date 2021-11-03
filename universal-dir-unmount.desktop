@@ -9,11 +9,13 @@ Actions=unmount;unmount-delete;
 [Desktop Action unmount]
 Name=Unmount
 Name[nl]=Afkoppelen
+Name[ru]=Размонтировать
 Icon=media-eject
 Exec=fusermount -u "%f" || pkexec umount "%f" || kdialog --error "Cannot unmount, you can try to do it manually:\n\nsudo umount \\""%f"\\""
 
 [Desktop Action unmount-delete]
 Name=Unmount and delete directory
 Name[nl]=Afkoppelen en map verwijderen
+Name[ru]=Размонтировать и удалить папку
 Icon=media-eject
 Exec=((fusermount -u "%f" || pkexec umount "%f") && (rm -r "%f" || pkexec rm -r "%f")) || kdialog --error "Cannot unmount or delete, you can try to do it manually:\n\nsudo umount \\""%f"\\" && sudo rm -r \\""%f"\\""
